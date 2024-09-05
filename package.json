@@ -1,0 +1,23 @@
+{
+  "name": "my-mvc-tech-blog",
+  "version": "1.0.0",
+  "description": "A CMS-style blog site built from scratch and deployed on Render, where developers can publish their blog posts and comment on other developers' posts. This app follows the MVC paradigm in its architectural structure, using Handlebar.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-session-sequelize": "^7.1.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.0",
+    "pg": "^8.12.0",
+    "postgres": "^3.4.4",
+    "sequelize": "^6.37.3"
+  }
+}

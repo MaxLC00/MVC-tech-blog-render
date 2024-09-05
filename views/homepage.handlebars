@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+<body>
+    <header>
+        <h1> Welcome to my blog!</h1>
+        {{#if loggedIn}}
+            <a href="/logout">Logout</a>
+        {{else}}
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        {{/if}}
+    </header>
+    <main>
+        {{#if blogPosts.length}}
+            <ul>
+                {{#each blogPosts}}
+                    <li>
+                        <h2>
+                            <a href="/posts/{{id}}">{{title}}</a>
+                        </h2>
+                        <p>{{truncate content 100}}</p>
+                        <small>Posted on {{formatDate date_created}}</small>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>No blog posts.</p>
+        {{/if}}
+    </main>
+</body>
+</html>

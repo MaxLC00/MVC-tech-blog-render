@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{post.title}}</title>
+</head>
+<body>
+    <header>
+        <h1>{{post.title}}</h1>
+        <nav>
+           <a href="/">Home</a>
+            {{#if loggedIn}}
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
+            {{else}}
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            {{/if}} 
+        </nav>
+    </header>
+    <main>
+        <p>Created by: {{post.user.username}}</p>
+        <p>Date Created: {{post.date_created}}</p>
+        <div>
+            <h2>Contents:</h2>
+            <p>{{post.contents}}</p>
+        </div>
+        <div>
+            <h3>Comments:</h3>
+            {{#each post.comments}}
+                <div>
+                    <p>{{this.content}}</p>
+                    <p>By: {{this.user.username}}</p>
+                    <p>Date Created: {{this.date_created}}</p>
+                </div>
+            {{/each}}
+        </div>
+        {{#if loggedIn}}
+            <form action="/comments" method="POST">
+                <input type="hidden" name="postId" value="{{post.id}}">
+                <textarea name="content" placeholder="Leave a comment" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        {{else}}
+            <p><a href="/login">Log in</a> to leave a comment.</p>
+        {{/if}}
+    </main>
+</body>
+</html>

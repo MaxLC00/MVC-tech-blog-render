@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome yo your Dashboard, {{username}}!</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Your Posts</h2>
+            {{#if userPosts.length}}
+                {{#each userPosts}}
+                    <article>
+                        <h3>{{this.title}}</h3>
+                        <p>{{this.content}}</p>
+                        <p>Created on: {{formatDate this.date_created}}</p>
+                        {{#each this.comments}}
+                            <div>
+                                <p>{{this.username}} said: {{this.content}}</p>
+                                <p>Commented on: {{formatDate this.date_created}}</p>
+                            </div>
+                        {{/each}}
+                        <a href="/dashboard/edit/{{this.id}}">Edit</a>
+                        <a href="/dashboard/delete/{{this.id}}">Delete</a>
+                    </article>
+                {{/each}}
+            {{else}}
+                <p>You have no blog posts.</p>
+            {{/if}}
+        </section>
+        <section>
+            <h2>Add a New Post</h2>
+            <form action="/dashboard/new" method="POST">
+                <input type="text" name="title" placeholder="Post Title" required>
+                <textarea name="content" placeholder="Add text here" required></textarea>
+                <button type="submit">Add Post</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
